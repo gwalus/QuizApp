@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuizApp.Views.WelcomePage">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#CC9900</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ContentView Padding="0,30,0,30" VerticalOptions="FillAndExpand">
+                    <Image Source="quiz_app_logo.png" VerticalOptions="Center" HeightRequest="80"/>
+                </ContentView>
+            </StackLayout>
+        </StackLayout>
+        
+        <ScrollView Grid.Row="1">
+            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
+                <Label Text="Welcome to the QuizApp" FontSize="Title"/>
+                <Label Text="Let's try one's hand at your best category!" FontSize="16" Padding="0,0,0,0"/>
+                <Label Text="This app using open Trivia database" FontSize="14" Padding="0,30,0,0"/>
+                <Label FontSize="12" Padding="0,0,0,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="More information: "/>
+                                <Span Text="https://opentdb.com" FontAttributes="Bold"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Button Command="{Binding OpenWebCommand}"
+                        Margin="0,10,0,0" 
+                        Text="Learn more"
+                        TextColor="White" 
+                        CornerRadius="15" HeightRequest="40"/>
+                <Button Text="Let's play!" 
+                        FontSize="14" 
+                        HorizontalOptions="Center"
+                        CornerRadius="15" 
+                        HeightRequest="40"
+                        Command="{Binding GoToQuizCommand}"/>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
