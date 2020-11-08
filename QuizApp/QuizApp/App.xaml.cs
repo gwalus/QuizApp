@@ -12,9 +12,9 @@ namespace QuizApp
 
             DependencyService.Register<ITriviaService, TriviaService>();
             
-            Routing.RegisterRoute(nameof(QuizPage), typeof(QuizPage));
+            //Routing.RegisterRoute(nameof(QuizPage), typeof(QuizPage));
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new WelcomePage());
         }
 
         protected override void OnStart()

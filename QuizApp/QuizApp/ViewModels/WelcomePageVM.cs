@@ -10,7 +10,7 @@ namespace QuizApp.ViewModels
         public WelcomePageVM()
         {
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://opentdb.com"));
-            GoToQuizCommand = new Command(async () => await Shell.Current.GoToAsync($"{nameof(QuizPage)}?{nameof(QuizPageVM)}"));
+            GoToQuizCommand = new Command(async () => await App.Current.MainPage.Navigation.PushAsync(new ChooseDetailQuizPage()));
         }
 
         public ICommand OpenWebCommand { get; set; }

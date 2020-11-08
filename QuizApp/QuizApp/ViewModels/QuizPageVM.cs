@@ -73,16 +73,16 @@ namespace QuizApp.ViewModels
 
         private readonly ITriviaService _triviaService;
 
-        public QuizPageVM(ITriviaService triviaService)
+        public QuizPageVM(ITriviaService triviaService, string chosedCategory)
         {
             _triviaService = triviaService;
-            GetQuestions();
+            GetQuestions(chosedCategory);
             GetOneQuestion();
         }
 
-        public void GetQuestions()
+        public async void GetQuestions(string categoryId)
         {
-            Questions = _triviaService.GetQuestions("10", "22", "easy", "multiple");
+            Questions = await _triviaService.GetQuestions("10", categoryId, "easy", "multiple");
         }
 
         public void GetOneQuestion()
