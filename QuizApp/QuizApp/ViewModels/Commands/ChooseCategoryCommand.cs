@@ -16,14 +16,19 @@ namespace QuizApp.ViewModels.Commands
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            if (parameter != null)
+                return true;
+            return false;
         }
 
         public void Execute(object parameter)
         {
-            var categoryId = parameter.ToString();
+            if (parameter != null)
+            {
+                var categoryId = parameter.ToString();
 
-            _viewModel.GoToQuiz(categoryId);
+                _viewModel.GoToQuiz(categoryId);
+            }
         }
     }
 }

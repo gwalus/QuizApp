@@ -6,7 +6,7 @@ namespace QuizApp
 {
     public interface ITriviaService
     {
-        Task<IList<Result>> GetQuestions(string amount, string category, string difficulty, string type);
+        IList<Result> GetQuestions(string amount, string category, string difficulty, string type);
         Task<IList<TriviaCategory>> GetCategories();
     }
 }

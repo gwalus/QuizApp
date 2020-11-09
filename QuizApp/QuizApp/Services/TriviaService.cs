@@ -21,7 +21,7 @@ namespace QuizApp.Services
             return null;
         }
 
-        public async Task<IList<Result>> GetQuestions(string amount, string categoryId, string difficulty, string type)
+        public IList<Result> GetQuestions(string amount, string categoryId, string difficulty, string type)
         {
             var request = new RestRequest()
                 .AddParameter("amount", $"{amount}")
@@ -29,10 +29,12 @@ namespace QuizApp.Services
                 .AddParameter("difficulty", $"{difficulty}")
                 .AddParameter("type", $"{type}");
 
-            var response = await client.Value.ExecuteAsync<TriviaResponse>(request);
+            var response = client.Value.Execute<TriviaResponse>(request);
+            // sync
 
-            if (response.Data.response_code == 0)
+            if (response.IsSuccessful)
                 return response.Data.results;
+
             return null;
         }
     }

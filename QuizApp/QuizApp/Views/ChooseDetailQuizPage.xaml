@@ -1,13 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="QuizApp.Views.ChooseDetailQuizPage">
+             x:Class="QuizApp.Views.ChooseDetailQuizPage"
+             x:Name="ThisPage">
+
     <ListView ItemsSource="{Binding Categories}" SelectionMode="Single">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <StackLayout>
-                        <Button Text="{Binding Name}" Command="{Binding ChooseCategoryCommand}"/>
+                        <Button Text="{Binding Name}" Command="{Binding Source={x:Reference ThisPage}, Path=BindingContext.ChooseCategoryCommand}" CommandParameter="{Binding Id}"/>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
