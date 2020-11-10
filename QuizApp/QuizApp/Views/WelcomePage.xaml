@@ -22,7 +22,8 @@
                 <Label Text="Welcome to the QuizApp" FontSize="Title"/>
                 <Label Text="Let's try one's hand at your best category!" FontSize="16" Padding="0,0,0,0"/>
                 <Label Text="This app using open Trivia database" FontSize="14" Padding="0,30,0,0"/>
-                <Label FontSize="12" Padding="0,0,0,0">
+                <Label Text="You can add your questions to the database"/>
+                <Label FontSize="12" Padding="0,10,0,0">
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>

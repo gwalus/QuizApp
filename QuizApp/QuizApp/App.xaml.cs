@@ -11,10 +11,12 @@ namespace QuizApp
             InitializeComponent();
 
             DependencyService.Register<ITriviaService, TriviaService>();
-            
+
             //Routing.RegisterRoute(nameof(QuizPage), typeof(QuizPage));
 
-            MainPage = new NavigationPage(new WelcomePage());
+            //Device.SetFlags(new string[] { "Shapes_Experimental" });
+
+            MainPage = new SplashPage();
         }
 
         protected override void OnStart()

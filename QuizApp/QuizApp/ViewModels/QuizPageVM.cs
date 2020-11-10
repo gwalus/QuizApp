@@ -45,8 +45,6 @@ namespace QuizApp.ViewModels
             set { currentQuestion = value; }
         }
 
-
-
         private string answer1;
 
         public string Answer1
@@ -146,7 +144,7 @@ namespace QuizApp.ViewModels
                 CurrentQuestion = Questions.ElementAt(number);
                 // aktualny zestaw pytania
 
-                Question = CurrentQuestion.question.Replace("&quot;", "").Replace("&#039;", "");
+                Question = CurrentQuestion.question.Replace("&quot;", "&").Replace("&#039;", "'").Replace("&amp;", "&").Replace("&Uuml;", "¨");
                 // aktualne pytanie STRING
 
                 var listOfAnswers = new List<string>(CurrentQuestion.incorrect_answers)

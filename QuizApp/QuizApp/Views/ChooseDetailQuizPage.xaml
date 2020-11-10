@@ -6,10 +6,11 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="{StaticResource Primary}">
     <StackLayout>
-        <Label Text="Category" 
+        <Label Text="Categories" 
                FontSize="Title"
                HorizontalOptions="Center"
-               Margin="10"/>
+               Margin="10"
+               FontAttributes="Bold"/>
 
         <ActivityIndicator x:Name="loadingActivityIndicator"
                            Color="Black" 

@@ -89,12 +89,12 @@ namespace QuizApp.ViewModels
             Loading = true;
             var categories = await _triviaService.GetCategories();
 
-            foreach (var category in categories)
-            {
-                var quantity = await _triviaService.GetCategoriesQuantity(category.Id.ToString());
-                if (quantity != null)
-                    CategoriesQuantity.Add(quantity.total_easy_question_count);                
-            }
+            //foreach (var category in categories)
+            //{
+            //    var quantity = await _triviaService.GetCategoriesQuantity(category.Id.ToString());
+            //    if (quantity != null)
+            //        CategoriesQuantity.Add(quantity.total_easy_question_count);                
+            //}
 
             Categories = categories;
             Loading = false;
