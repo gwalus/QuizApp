@@ -8,5 +8,6 @@ namespace QuizApp
     {
         IList<Result> GetQuestions(string amount, string category, string difficulty, string type);
         Task<IList<TriviaCategory>> GetCategories();
+        Task<CategoryQuestionCount> GetCategoriesQuantity(string categoryId);
     }
 }

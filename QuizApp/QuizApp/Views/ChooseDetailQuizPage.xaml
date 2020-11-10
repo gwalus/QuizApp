@@ -2,17 +2,39 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuizApp.Views.ChooseDetailQuizPage"
-             x:Name="ThisPage">
+             x:Name="ThisPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{StaticResource Primary}">
+    <StackLayout>
+        <Label Text="Category" 
+               FontSize="Title"
+               HorizontalOptions="Center"
+               Margin="10"/>
 
-    <ListView ItemsSource="{Binding Categories}" SelectionMode="Single">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <StackLayout>
-                        <Button Text="{Binding Name}" Command="{Binding Source={x:Reference ThisPage}, Path=BindingContext.ChooseCategoryCommand}" CommandParameter="{Binding Id}"/>
-                    </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+        <ActivityIndicator x:Name="loadingActivityIndicator"
+                           Color="Black" 
+                           IsRunning="{Binding Loading}" 
+                           VerticalOptions="Center"
+                           IsVisible="{Binding Source={RelativeSource Self}, Path=IsRunning}"/>
+
+        <ListView ItemsSource="{Binding Categories}"
+                  Margin="10,0"
+                  HasUnevenRows="True"
+                  IsVisible="{Binding Source={x:Reference loadingActivityIndicator}, Path=!IsRunning}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Button Text="{Binding Name}" 
+                                Command="{Binding Source={x:Reference ThisPage}, Path=BindingContext.ChooseCategoryCommand}" 
+                                CommandParameter="{Binding Id}"
+                                Margin="0,0,0,10"
+                                CornerRadius="10"
+                                BorderColor="Black"
+                                BorderWidth="1"/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
 </ContentPage>

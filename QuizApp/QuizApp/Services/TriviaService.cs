@@ -37,5 +37,18 @@ namespace QuizApp.Services
 
             return null;
         }
+
+        public async Task<CategoryQuestionCount> GetCategoriesQuantity(string categoryId)
+        {
+            var request = new RestRequest("https://opentdb.com/api_count.php?category")
+                .AddParameter("category", $"{categoryId}");
+
+            var response = await client.Value.ExecuteAsync<CategoriesQuantity>(request);
+
+            if (response.IsSuccessful)
+                return response.Data.category_question_count;
+
+            return null;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using QuizApp.Models;
 using QuizApp.ViewModels.Commands;
+using QuizApp.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +25,7 @@ namespace QuizApp.ViewModels
             }
         }
 
-        private int currentNumberQuestion = 0;
+        private int currentNumberQuestion = 1;
 
         public int CurrentNumberQuestion
         {
@@ -99,15 +100,25 @@ namespace QuizApp.ViewModels
         public int Score
         {
             get { return score; }
-            set 
+            set
             {
                 score = value;
                 OnPropertyChanged("Score");
             }
         }
 
+        private Color answerColor;
 
-        private int questionsCount;
+        public Color AnswerColor
+        {
+            get { return answerColor; }
+            set 
+            {
+                answerColor = value;
+                OnPropertyChanged("AnswerColor");
+            }
+        }
+
         public CheckAnswerCommand CheckAnswerCommand { get; set; }
         private readonly ITriviaService _triviaService;
 
@@ -124,38 +135,55 @@ namespace QuizApp.ViewModels
             var questions = _triviaService.GetQuestions("5", categoryId, "easy", "multiple");
 
             if (questions != null)
-            {
                 Questions = questions;
-                questionsCount = Questions.Count();
-            }
         }
 
-        public void GetOneQuestion(int current)
+        public async void GetOneQuestion(int currentNumber)
         {
-            CurrentQuestion = Questions.ElementAt(current);
-            // aktualny zestaw pytania
+            int number = currentNumber - 1;
+            if (number < Questions.Count)
+            {
+                CurrentQuestion = Questions.ElementAt(number);
+                // aktualny zestaw pytania
 
-            Question = CurrentQuestion.question;
-            // aktualne pytanie STRING
+                Question = CurrentQuestion.question.Replace("&quot;", "").Replace("&#039;", "");
+                // aktualne pytanie STRING
 
-            var listOfAnswers = new List<string>(CurrentQuestion.incorrect_answers);
-            listOfAnswers.Add(CurrentQuestion.correct_answer);
-            // lista odpowiedzi obecnego pytania
+                var listOfAnswers = new List<string>(CurrentQuestion.incorrect_answers)
+                {
+                    CurrentQuestion.correct_answer
+                };
+                // lista odpowiedzi obecnego pytania
 
-            var numbers = new List<int>() { 0, 1, 2, 3 };
-            var mixedNumbers = numbers.OrderBy(a => Guid.NewGuid()).ToList();
-            // losowo ustawiane odpowiedzi, tak żeby poprawna odpowiedź nie była zawsze w tym samym miejscu
+                var numbers = new List<int>() { 0, 1, 2, 3 };
+                var mixedNumbers = numbers.OrderBy(a => Guid.NewGuid()).ToList();
+                // losowo ustawiane odpowiedzi, tak żeby poprawna odpowiedź nie była zawsze w tym samym miejscu
 
-            Answer1 = listOfAnswers.ElementAt(mixedNumbers[0]);
-            Answer2 = listOfAnswers.ElementAt(mixedNumbers[1]);
-            Answer3 = listOfAnswers.ElementAt(mixedNumbers[2]);
-            Answer4 = listOfAnswers.ElementAt(mixedNumbers[3]);
+                Answer1 = listOfAnswers.ElementAt(mixedNumbers[0]);
+                Answer2 = listOfAnswers.ElementAt(mixedNumbers[1]);
+                Answer3 = listOfAnswers.ElementAt(mixedNumbers[2]);
+                Answer4 = listOfAnswers.ElementAt(mixedNumbers[3]);
+            }
+            else
+            {
+                if(await App.Current.MainPage.DisplayAlert("End quiz", $"Your score {Score}", "Play again!", "Go to welcome Page"))
+                    await App.Current.MainPage.Navigation.PushAsync(new ChooseDetailQuizPage());
+                    else await App.Current.MainPage.Navigation.PushAsync(new WelcomePage());
+                
+            }
         }
 
         public void CheckAnswer(string userAnswer)
         {
             if (CurrentQuestion.correct_answer == userAnswer)
+            {
+                //AnswerColor = Color.Green;
                 Score += 1;
+            }
+            //else AnswerColor = Color.Red;
+
+            CurrentNumberQuestion += 1;
+            GetOneQuestion(CurrentNumberQuestion);
         }
 
         private void OnPropertyChanged(string memberName)
