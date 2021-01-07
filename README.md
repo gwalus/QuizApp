@@ -1,19 +1,19 @@
 # QuizApp
 
-This app using Open Trivia Database
+This app using Open Trivia Database [Trivia Database](https://opentdb.com)
 ![](https://opentdb.com/images/logo.png)
 
 * Xamarin.Forms
 
 ## Screenshots:
 
-![](https://github.com/gwalus/QuizApp/blob/master/QuizApp/QuizApp/Screenshots/Screenshot_20210107-114047.png=800x600)
+<img src="https://github.com/gwalus/QuizApp/blob/master/QuizApp/QuizApp/Screenshots/Screenshot_20210107-114047.png" width="450" height="800" />
 > Main view
 
-![](https://github.com/gwalus/QuizApp/blob/master/QuizApp/QuizApp/Screenshots/Screenshot_20210107-114102.png)
+<img src="https://github.com/gwalus/QuizApp/blob/master/QuizApp/QuizApp/Screenshots/Screenshot_20210107-114102.png" width="450" height="800" />
 > Categories
 
-![](https://github.com/gwalus/QuizApp/blob/master/QuizApp/QuizApp/Screenshots/Screenshot_20210107-114201.png)
+<img src="https://github.com/gwalus/QuizApp/blob/master/QuizApp/QuizApp/Screenshots/Screenshot_20210107-114201.png" width="450" height="800" />
 > One of the question
 
-<img src="https://github.com/gwalus/QuizApp/blob/master/QuizApp/QuizApp/Screenshots/Screenshot_20210107-114047.png" width="450" height="800" />
+
