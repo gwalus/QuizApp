@@ -2,7 +2,7 @@
 
 <img src="https://opentdb.com/images/logo.png" width="600" height="250" />
 
-This app using Open Trivia Database [Trivia Database](https://opentdb.com)
+This app using [Open Trivia Database](https://opentdb.com) API
 
 * Xamarin.Forms
 
