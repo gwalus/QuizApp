@@ -1,7 +1,8 @@
 # QuizApp
 
+<img src="https://opentdb.com/images/logo.png" width="200" height="50" />
+
 This app using Open Trivia Database [Trivia Database](https://opentdb.com)
-![](https://opentdb.com/images/logo.png)
 
 * Xamarin.Forms
 
