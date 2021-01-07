@@ -1,6 +1,6 @@
 # QuizApp
 
-<img src="https://opentdb.com/images/logo.png" width="500" height="200" />
+<img src="https://opentdb.com/images/logo.png" width="600" height="200" />
 
 This app using Open Trivia Database [Trivia Database](https://opentdb.com)
 
